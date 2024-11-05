@@ -27,8 +27,8 @@ const LoginForm = () => {
           setloading(false);
           toast.success(err.response.data.message);
         });
-    } catch (error: any) {
-      toast.error(error.response.data.message);
+    } catch (error) {
+      router.refresh();
     }
   }
   return (
