@@ -75,7 +75,7 @@ export async function DELETE(request: NextRequest, { params }: Props) {
         { status: 404 }
       );
     }
-    if (user.id === comment?.userId) {
+    if (user.id === comment?.userId || user.isAdmin === true) {
       await prisma.comment.delete({
         where: { id: parseInt(params.id) },
       });
@@ -85,7 +85,7 @@ export async function DELETE(request: NextRequest, { params }: Props) {
       );
     }
     return NextResponse.json(
-      { message: "only user can update his comment" },
+      { message: "only user can delete his comment" },
       { status: 403 }
     );
   } catch (error) {

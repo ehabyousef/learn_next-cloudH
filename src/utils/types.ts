@@ -1,6 +1,4 @@
-export type article = {
-  id: number;
-  userId: number;
-  title: string;
-  body: string;
-};
+import { Article, Comment, User } from "@prisma/client";
+
+export type commentWithUser = Comment & { user: User };
+export type singleArticleType = Article & { comments: commentWithUser[] };

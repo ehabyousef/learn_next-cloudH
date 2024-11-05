@@ -6,7 +6,6 @@ import LogoutButton from "../LogoutButton";
 export default function Header() {
   const cookie = cookies().get("jwtToken")?.value || "";
   const user = verifyTokenForPage(cookie);
-  console.log(user);
   return (
     <header className="flex justify-between w-full bg-gray-800 py-6 px-4 md:px-8">
       <nav className="flex justify-between w-full">
@@ -22,7 +21,7 @@ export default function Header() {
           <Link href="/">Home</Link>
           <Link href="/articles?pageNumber=1">articles</Link>
           <Link href="/about">about</Link>
-          <Link href="/admin">admin</Link>
+          {user?.isAdmin && <Link href="/admin">admin</Link>}
         </ul>
         {user ? (
           <div className="flex items-center justify-center gap-2 text-xl font-black">
